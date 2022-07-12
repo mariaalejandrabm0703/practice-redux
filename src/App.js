@@ -15,11 +15,8 @@ function App() {
   const [name, setName] = useState("");
   const [noData, setNoData] = useState(true);
 
-  const pokemons = useSelector((state) => state.data.pokemons, shallowEqual);
-  const pokemonsFilter = useSelector(
-    (state) => state.data.pokemonsFilter,
-    shallowEqual
-  );
+  const pokemons = useSelector((state) => state.data.pokemons);
+  const pokemonsFilter = useSelector((state) => state.data.pokemonsFilter);
   const loading = useSelector((state) => state.ui.loading);
 
   const dispatch = useDispatch();
@@ -58,7 +55,8 @@ export default App;
 
 function search(setNoData, pokemons, name, dispatch) {
   setNoData(true);
-  const filter = pokemons.filter((pokemon) => pokemon.name.toLowerCase().includes(name.toLowerCase())
+  const filter = pokemons.filter((pokemon) =>
+    pokemon.name.toLowerCase().includes(name.toLowerCase())
   );
 
   if (filter.length > 0) {
@@ -72,4 +70,3 @@ function search(setNoData, pokemons, name, dispatch) {
     setNoData(true);
   }
 }
-
