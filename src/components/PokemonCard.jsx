@@ -1,21 +1,17 @@
-import { StarOutlined } from '@ant-design/icons';
-import { Card } from 'antd';
-import Meta from 'antd/lib/card/Meta';
-import './PokemonList.css';
+import { StarOutlined } from "@ant-design/icons";
+import { Card } from "antd";
+import Meta from "antd/lib/card/Meta";
+import "./PokemonList.css";
 
-const PokemonCard = ({ name }) => {
+const PokemonCard = ({ name, height, weight, img }) => {
   return (
     <Card
       title={name}
-      cover={
-        <img
-          src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/132.png'
-          alt='Ditto'
-        />
-      }
+      cover={<img src={img} alt={name} />}
       extra={<StarOutlined />}
     >
-      <Meta description='fire, magic' />
+      <Meta description={"Wieght = " + weight} />
+      <Meta description={"Height = " + height} />
     </Card>
   );
 };

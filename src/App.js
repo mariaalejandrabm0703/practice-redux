@@ -7,6 +7,7 @@ import { getPokemon } from "./api";
 import logo from "./statics/logo.svg";
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
+import { getPokemonDetails } from "./api";
 
 function App() {
   const pokemons = useSelector((state) => state.pokemons);
@@ -15,7 +16,12 @@ function App() {
   useEffect(() => {
     const fetchPokemons = async () => {
       const pokemonsRes = await getPokemon();
-      dispatch(setPokemons(pokemonsRes));
+      const pokemonDetails = await Promise.all(
+        pokemonsRes.map(async (pokemon) => {
+         return getPokemonDetails(pokemon);
+        })
+      );
+      dispatch(setPokemons(pokemonDetails));
     };
 
     fetchPokemons();
