@@ -12,6 +12,7 @@ const PokemonList = ({ pokemons }) => {
             weight={pokemon.weight}
             img={pokemon.sprites.front_default}
             types={pokemon.types}
+            id={pokemon.id}
           />
         );
       })}
