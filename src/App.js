@@ -4,33 +4,32 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import Searcher from "./components/Searcher";
 import PokemonList from "./components/PokemonList";
 import logo from "./statics/logo.svg";
-import { fetchPokemonsWithDetails, setPokemonsFilter } from "./slices/dataSlice";
+import {
+  fetchPokemonsWithDetails,
+  setPokemonsFilter,
+} from "./slices/dataSlice";
 import "./App.css";
 import { useState } from "react";
 
 function App() {
   const [name, setName] = useState("");
+  const [noData, setNoData] = useState(true);
 
   const pokemons = useSelector((state) => state.data.pokemons, shallowEqual);
-
   const pokemonsFilter = useSelector(
     (state) => state.data.pokemonsFilter,
     shallowEqual
   );
-
   const loading = useSelector((state) => state.ui.loading);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (name === "" && pokemons.length === 0) {
-      dispatch(fetchPokemonsWithDetails());
-    } else {
-      const filter = pokemons.filter((pokemon) =>
-        pokemon.name.toLowerCase().includes(name.toLowerCase())
-      );
-      dispatch(setPokemonsFilter(filter));
-    }
+    dispatch(fetchPokemonsWithDetails());
+  }, []);
+
+  useEffect(() => {
+    search(setNoData, pokemons, name, dispatch);
   }, [name]);
 
   return (
@@ -40,6 +39,7 @@ function App() {
       </Col>
       <Col span={8} offset={8}>
         <Searcher setName={setName} />
+        <p hidden={noData}>No se ha encontrado coincidencias.</p>
       </Col>
       {loading ? (
         <Col offset={12}>
@@ -55,3 +55,21 @@ function App() {
 }
 
 export default App;
+
+function search(setNoData, pokemons, name, dispatch) {
+  setNoData(true);
+  const filter = pokemons.filter((pokemon) => pokemon.name.toLowerCase().includes(name.toLowerCase())
+  );
+
+  if (filter.length > 0) {
+    dispatch(setPokemonsFilter(filter));
+  } else {
+    dispatch(setPokemonsFilter([]));
+  }
+  if (0 === filter.length && name !== "") {
+    setNoData(false);
+  } else {
+    setNoData(true);
+  }
+}
+
