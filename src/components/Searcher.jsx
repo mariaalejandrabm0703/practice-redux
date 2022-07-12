@@ -1,7 +1,13 @@
-import { Input } from 'antd';
+import { Input } from "antd";
 
-const Searcher = () => {
-  return <Input.Search placeholder='Buscar...' style={{ marginBottom: 10 }} />;
+const Searcher = ({ setName }) => {
+  return (
+    <Input.Search
+      placeholder="Buscar..."
+      style={{ marginBottom: 10 }}
+      onChange={(e) => setName(e.target.value)}
+    />
+  );
 };
 
 export default Searcher;
