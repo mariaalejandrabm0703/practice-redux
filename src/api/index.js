@@ -11,11 +11,12 @@ export const getPokemon = () => {
 export const getPokemonDetails = async (pokemon) => {
   const { name } = pokemon;
   const res = await axios.get(pokemon.url);
-  const { height, weight, sprites } = res.data;
+  const { height, weight, sprites, types } = res.data;
   return {
     name,
     height,
     weight,
     sprites,
+    types
   };
 }
