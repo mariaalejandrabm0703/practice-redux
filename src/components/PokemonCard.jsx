@@ -1,20 +1,23 @@
-import { Card } from "antd";
-import Meta from "antd/lib/card/Meta";
-import { setFavorite } from "../actions";
-import "./PokemonList.css";
-import StarButton from "./StarButton";
-import {useDispatch} from "react-redux";
+import { Card } from 'antd';
+import { useDispatch } from 'react-redux';
+import Meta from 'antd/lib/card/Meta';
+import StarButton from './StarButton';
+import { setFavorite } from '../slices/dataSlice';
+import './PokemonList.css';
 
-const PokemonCard = ({ name, height, weight, img, types, id }) => {
+const PokemonCard = ({ name, image, types, id, favorite,height, weight }) => {
   const dispatch = useDispatch();
-  const handleFavorite = () => {
-    dispatch(setFavorite(id));
+  const typesString = types.map((elem) => elem.type.name).join(', ');
+
+  const handleOnFavorite = () => {
+    dispatch(setFavorite({ pokemonId: id }));
   };
+
   return (
     <Card
       title={name}
-      cover={<img src={img} alt={name} />}
-      extra={<StarButton onClick={handleFavorite} />}
+      cover={<img src={image} alt={name} />}
+      extra={<StarButton isFavorite={favorite} onClick={handleOnFavorite} />}
     >
       <Meta description={"Weight = " + weight} />
       <Meta description={"Height = " + height} />
