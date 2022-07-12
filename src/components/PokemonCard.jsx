@@ -10,7 +10,7 @@ const PokemonCard = ({ name, height, weight, img }) => {
       cover={<img src={img} alt={name} />}
       extra={<StarOutlined />}
     >
-      <Meta description={"Wieght = " + weight} />
+      <Meta description={"Weight = " + weight} />
       <Meta description={"Height = " + height} />
     </Card>
   );
