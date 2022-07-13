@@ -46,4 +46,4 @@ export const dataSlice = createSlice({
 
 export const { setFavorite, setPokemons, setPokemonsFilter } = dataSlice.actions;
 
-export default dataSlice.reducer;
+export default dataSlice;
