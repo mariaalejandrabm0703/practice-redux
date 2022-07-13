@@ -1,11 +1,16 @@
+import { configureStore } from "@reduxjs/toolkit";
 import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
-import { legacy_createStore as createStore } from "redux";
+import thunk from "redux-thunk";
 import App from "./App";
+import { logger } from "./middlewares";
 import rootReducer from "./reducers/rootReducer";
 
 describe("App", () => {
-  const store = createStore(rootReducer);
+  const store = configureStore({
+    reducer: rootReducer,
+    middleware: [thunk, logger],
+  });
 
   it("should render correctly", () => {
     render(
