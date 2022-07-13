@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Col, Spin } from "antd";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Searcher from "./components/Searcher";
 import PokemonList from "./components/PokemonList";
 import logo from "./statics/logo.svg";
