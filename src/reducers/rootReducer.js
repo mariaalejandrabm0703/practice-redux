@@ -4,7 +4,7 @@ import uiReducer from '../slices/uiSlice';
 
 const rootReducer = combineReducers({
   data: dataReducer.reducer,
-  ui: uiReducer,
+  ui: uiReducer.reducer,
 });
 
 export default rootReducer;

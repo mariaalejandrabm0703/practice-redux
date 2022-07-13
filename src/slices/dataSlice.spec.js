@@ -1,4 +1,8 @@
-import dataSlice, { setFavorite, setPokemons, setPokemonsFilter } from "./dataSlice";
+import dataSlice, {
+  setFavorite,
+  setPokemons,
+  setPokemonsFilter,
+} from "./dataSlice";
 import {
   dataStateWithPokemons,
   dataStateWithPokemonsFavorite,
@@ -54,5 +58,4 @@ describe("dataSlice", () => {
     );
     expect(state).toEqual(dataStateWithPokemonsFavorite);
   });
-
 });

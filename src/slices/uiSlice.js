@@ -16,4 +16,4 @@ export const uiSlice = createSlice({
 
 export const { setLoading } = uiSlice.actions;
 
-export default uiSlice.reducer;
+export default uiSlice;
